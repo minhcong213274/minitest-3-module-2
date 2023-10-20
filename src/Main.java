@@ -1,24 +1,48 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        StaffManager staffManager = new StaffManager();
-        Staff staff = new StaffFullTime(1,"cong",24,"0123466","bg",20000,10000,100000);
-        Staff staff1 = new StaffPartTime(2,"hung",23,"02102","hn",200);
-        Staff staff2 = new StaffPartTime(3,"hai",23,"021032","hn",100);
-        Staff staff3 = new StaffPartTime(4,"chung",23,"0210234","hn",150);
-        Staff staff4 = new StaffFullTime(5,"son",27,"0125553466","bg",50000,20000,500000);
-        Staff staff5 = new StaffFullTime(5,"nam",30,"01255533466","bg2",50000,20000,400000);
-        staffManager.addStaff(staff);
-        staffManager.addStaff(staff1);
-        staffManager.addStaff(staff2);
-        staffManager.addStaff(staff3);
-        staffManager.addStaff(staff4);
-        staffManager.addStaff(staff5);
-        System.out.println(staffManager.getTotalSalaryStaffPartTime());
-        System.out.println(staffManager.getAverageSalary());
-        staffManager.listStaffFullTimeLowerThanAverageSalary();
-        System.out.println(staffManager);
-       staffManager.sortStaffFullTimeBySalaryAscending();
-        System.out.println(staffManager);
+        ProgrammingBook book1 = new ProgrammingBook(1,"1",100,"a1","java");
+        ProgrammingBook book2 = new ProgrammingBook(2,"2",200,"a2","java");
+        ProgrammingBook book3 = new ProgrammingBook(3,"3",300,"a3","java");
+        ProgrammingBook book4 = new ProgrammingBook(4,"4",400,"a4","java2");
+        ProgrammingBook book5 = new ProgrammingBook(5,"5",500,"a5","java");
+        FictionBook book6 = new FictionBook(6,"6",600,"a6","Viễn tưởng 1");
+        FictionBook book7 = new FictionBook(7,"7",700,"a7","Viễn tưởng 1");
+        FictionBook book8 = new FictionBook(8,"8",80,"a8","b");
+        FictionBook book9 = new FictionBook(9,"9",90,"a9","b");
+        FictionBook book10 = new FictionBook(10,"10",1000,"a10","b");
+        List<Book> books = new ArrayList<>();
+        books.add(book1);
+        books.add(book2);
+        books.add(book3);
+        books.add(book4);
+        books.add(book5);
+        books.add(book6);
+        books.add(book7);
+        books.add(book8);
+        books.add(book9);
+        books.add(book10);
+        int total=0;
+        int countCategory=0;
+        int countJava=0;
+        int countPrice=0;
+        for (Book c:books){
+            total+=c.getPrice();
+            if (c instanceof ProgrammingBook && ((ProgrammingBook) c).getLanguage()=="java"){
+                countJava++;
+            }
+            if (c instanceof FictionBook && c.getPrice()<100){
+                countPrice++;
+            }
+            if (c instanceof FictionBook && ((FictionBook) c).getCategory()=="Viễn tưởng 1"){
+                countCategory++;
+            }
+        }
+        System.out.println(total);
+        System.out.println(countJava);
+        System.out.println(countCategory);
+        System.out.println(countPrice);
     }
 }
